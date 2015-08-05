@@ -1,0 +1,352 @@
+//
+//  GameScene.swift
+//  flappyBird
+//
+//  Created by iD Student on 7/8/15.
+//  Copyright (c) 2015 Mapple. All rights reserved.
+//
+
+import SpriteKit
+import AVFoundation
+class GameScene: SKScene , SKPhysicsContactDelegate {
+    var bird = SKSpriteNode()
+//    var bird2 = SKSpriteNode()
+    var bg = SKSpriteNode()
+    var labelHolder = SKSpriteNode()
+    var labelHolder2 = SKSpriteNode()
+    
+    var score = 0
+//    var score2 = 0
+    var scoreLabel  = SKLabelNode()
+    var gameOverLabel = SKLabelNode()
+    
+//    var scoreLabel2  = SKLabelNode()
+//    var gameOverLabel2 = SKLabelNode()
+    
+    let birdGroup:UInt32 = 1
+    let objectGroup:UInt32 = 2
+    let gapGroup:UInt32 = 0 << 3
+    
+    var gameOver = 0
+//    var gameOver2 = 0
+    var movingObjects = SKNode()
+    
+    var coinSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("coin", ofType: "wav")!)
+    var audioPlayer = AVAudioPlayer()
+    
+    
+    func didBeginContact(contact: SKPhysicsContact) {
+        if ((contact.bodyA.categoryBitMask == gapGroup)){
+            score++
+            audioPlayer.play()
+            scoreLabel.text = "\(score)"
+        }
+        else if(contact.bodyA.categoryBitMask == objectGroup) || (contact.bodyB.categoryBitMask == objectGroup){
+            if gameOver == 0{
+            self.scoreLabel.text = "You Lost"
+            gameOverLabel.fontName = "Helvetica"
+            gameOverLabel.fontSize = 20
+            gameOverLabel.text = "Game Over! Tap to try again!"
+            gameOverLabel.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.height - 100)
+            labelHolder.addChild(gameOverLabel)
+            gameOverLabel.zPosition = 999
+            gameOver = 1
+            movingObjects.speed = 0
+            }
+        }
+        
+    
+//        } else {
+//                println(contact.bodyA.categoryBitMask)
+//                println(contact.bodyB.categoryBitMask)
+//            if (contact.bodyA == bird) {
+//                println("game over")
+//                if gameOver == 0{ //player1 gameover
+//                    gameOver = 1
+//                    
+//                    
+//                    gameOverLabel.fontName = "Helvetica"
+//                    gameOverLabel.fontSize = 20
+//                    gameOverLabel.text = "Game Over! Tap to try again!"
+//                    gameOverLabel.position = CGPointMake(CGRectGetMidX(self.frame) - 100, self.frame.height - 100)
+//                    labelHolder.addChild(gameOverLabel)
+//                    gameOverLabel.zPosition = 999
+//                    audioPlayer.play()
+//                    
+//                }
+//
+//            
+//            }
+//            else { //player2 gameover
+//                
+//                if gameOver2 == 0{
+//                    gameOver2 = 1
+//                    
+//                    
+//                    gameOverLabel2.fontName = "Helvetica"
+//                    gameOverLabel2.fontSize = 20
+//                    gameOverLabel2.text = "Game Over! Tap to try again!"
+//                    gameOverLabel2.position = CGPointMake( CGRectGetMidX(self.frame) + 100, self.frame.height - 100)
+//                    labelHolder2.addChild(gameOverLabel2)
+//                    gameOverLabel2.zPosition = 999
+//                    audioPlayer.play()
+//                    
+//                }
+//
+//                
+//            }
+    
+//            if (gameOver == 1){
+//                movingObjects.speed = 0
+//            }
+//            
+//                    }
+//    }
+//    
+}
+
+    override func didMoveToView(view: SKView) {
+        audioPlayer = AVAudioPlayer(contentsOfURL: coinSound, error: nil)
+        audioPlayer.prepareToPlay()
+    
+        self.physicsWorld.contactDelegate = self
+        self.physicsWorld.gravity = CGVectorMake(0, -10)
+        
+        self.addChild(movingObjects)
+        self.addChild(labelHolder)
+        makeBackground()
+        scoreLabel.fontName = "Halvetica"
+        scoreLabel.fontSize = 60
+        scoreLabel.text = "0"
+        scoreLabel.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.size.height - 70)
+        scoreLabel.zPosition = 9999
+        self.addChild(scoreLabel)
+        
+        
+//        scoreLabel2.fontName = "Halvetica"
+//        scoreLabel2.fontSize = 60
+//        scoreLabel2.text = "0"
+//        scoreLabel2.position = CGPointMake(CGRectGetMidX(self.frame) + 100 , self.frame.size.height - 70)
+//        scoreLabel2.zPosition = 9999
+//        self.addChild(scoreLabel2)
+        
+         var birdTexture  = SKTexture(imageNamed: "img/flappy1.png" )
+         var birdTexture2  = SKTexture(imageNamed: "img/flappy2.png" )
+        
+//        var bird2Texture  = SKTexture(imageNamed: "img/flappy31.png" )
+//        var bird2Texture2  = SKTexture(imageNamed: "img/flappy32.png" )
+        
+        var animation  = SKAction.animateWithTextures([birdTexture , birdTexture2], timePerFrame: 0.1)
+        var makeBirdFlap = SKAction.repeatActionForever(animation)
+        
+//        var animation2  = SKAction.animateWithTextures([bird2Texture , bird2Texture2], timePerFrame: 0.1)
+//        var makeBird2Flap = SKAction.repeatActionForever(animation2)
+        
+        bird = SKSpriteNode(texture: birdTexture)
+        bird.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+        bird.runAction(makeBirdFlap)
+        
+        bird.physicsBody = SKPhysicsBody(circleOfRadius: bird.size.height / 2)
+        bird.physicsBody?.dynamic = true
+        
+        bird.physicsBody?.allowsRotation = true
+        bird.physicsBody?.angularVelocity = 10
+        
+        bird.physicsBody?.categoryBitMask = birdGroup
+        bird.physicsBody?.contactTestBitMask = objectGroup
+        bird.physicsBody?.collisionBitMask = gapGroup
+        
+        bird.zPosition = 10
+        self.addChild(bird)
+        
+        
+//        bird2 = SKSpriteNode(texture: bird2Texture)
+//        bird2.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+//        bird2.runAction(makeBird2Flap)
+//        
+//        bird2.physicsBody = SKPhysicsBody(circleOfRadius: bird2.size.height / 2)
+//        bird2.physicsBody?.dynamic = true
+//        
+//        bird2.physicsBody?.allowsRotation = true
+//        bird2.physicsBody?.angularVelocity = 10
+//        
+//        bird2.physicsBody?.categoryBitMask = birdGroup
+//        bird2.physicsBody?.contactTestBitMask = objectGroup
+//        bird2.physicsBody?.collisionBitMask = gapGroup
+//        
+//        bird2.zPosition = 10
+//        self.addChild(bird2)
+        
+        
+        
+        var ground = SKNode()
+        ground.position = CGPointMake(0, 0)
+        ground.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.size.width, 1))
+        ground.physicsBody?.dynamic  = false
+        ground.physicsBody?.categoryBitMask = objectGroup
+        self.addChild(ground)
+        
+        var timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("makePipes"), userInfo: nil, repeats: true)
+        /* Setup your scene here */
+    }
+    func makePipes(){
+        if (gameOver == 0){
+            let gapHeight = bird.size.height * ( CGFloat(arc4random_uniform(3)) + 4 )
+            
+            var movementAmount = arc4random() % UInt32(self.frame.size.height / 2)
+            
+            var pipeOffset = CGFloat(movementAmount) - self.frame.size.height / 4
+            var movePipes = SKAction.moveByX(-self.frame.size.width * 2, y: 0, duration: NSTimeInterval(self.frame.size.width / 100))
+            var removePipes = SKAction.removeFromParent()
+            
+            var moveAndRemovePipes = SKAction.sequence([movePipes, removePipes])
+            
+            var pipe1Texture = SKTexture(imageNamed: "img/pipe1.png")
+            var pipe1 = SKSpriteNode(texture: pipe1Texture)
+            pipe1.position = CGPointMake(CGRectGetMidX(self.frame) + self.frame.size.width, CGRectGetMidY(self.frame) + pipe1.size.height / 2 + gapHeight / 2 + pipeOffset)
+            
+            pipe1.runAction(moveAndRemovePipes)
+            pipe1.physicsBody = SKPhysicsBody(rectangleOfSize: pipe1.size)
+            pipe1.physicsBody?.dynamic = false
+            pipe1.physicsBody?.categoryBitMask  = objectGroup
+            movingObjects.addChild(pipe1)
+            
+            var pipe2Texture = SKTexture(imageNamed: "img/pipe2.png")
+            var pipe2 = SKSpriteNode(texture: pipe2Texture)
+            pipe2.position = CGPointMake(CGRectGetMidX(self.frame) + self.frame.size.width, CGRectGetMidY(self.frame) - pipe2.size.height / 2 - gapHeight / 2 + pipeOffset)
+            
+            pipe2.runAction(moveAndRemovePipes)
+            pipe2.physicsBody = SKPhysicsBody(rectangleOfSize: pipe2.size)
+            pipe2.physicsBody?.dynamic = false
+            pipe2.physicsBody?.categoryBitMask  = objectGroup
+            movingObjects.addChild(pipe2)
+            
+            var gap = SKNode()
+            gap.position = CGPoint(x: CGRectGetMidX(self.frame) + self.frame.size.width, y: CGRectGetMidY(self.frame) + pipeOffset)
+            gap.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(pipe1.size.width, gapHeight))
+            gap.runAction(moveAndRemovePipes)
+            gap.physicsBody?.dynamic = false
+            gap.physicsBody?.collisionBitMask = gapGroup
+            gap.physicsBody?.categoryBitMask = gapGroup
+            gap.physicsBody?.contactTestBitMask = birdGroup
+            movingObjects.addChild(gap)
+            
+            
+        }
+ 
+        
+    
+        
+
+        
+
+}
+    
+    func makeBackground() {
+        var bgTexture  = SKTexture(imageNamed: "img/bg.png" )
+        var movebg = SKAction.moveByX(-bgTexture.size().width, y: 0, duration: 9)
+        var replacebg = SKAction.moveByX(bgTexture.size().width, y: 0, duration: 0)
+        var movebgForever = SKAction.repeatActionForever(SKAction.sequence([movebg,replacebg]))
+        
+        
+        
+        for var i:CGFloat=0; i<3; i++ {
+            bg = SKSpriteNode(texture:bgTexture)
+            bg.position = CGPoint(x: bgTexture.size().width / 2 + bgTexture.size().width * i, y: CGRectGetMidY(self.frame))
+            bg.size.height = self.frame.height + 5
+            bg.runAction(movebgForever)
+            
+            movingObjects.addChild(bg)
+
+            
+        }
+
+
+    }
+    
+
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        /* Called when a touch begins */
+        var birdTemp = SKSpriteNode()
+        for touch: AnyObject in touches {
+            let location = (touch as! UITouch).locationInNode(self)
+            NSLog("x:\(location.x) y:\(location.y)")
+            
+            
+            if (gameOver == 1){
+                  labelHolder.removeAllChildren()
+                  movingObjects.removeAllChildren()
+                movingObjects.speed = 1
+                makeBackground()
+
+                bird.physicsBody?.velocity = CGVectorMake(0,0)
+                bird.physicsBody?.applyImpulse(CGVectorMake(0,70))
+//                bird2.physicsBody?.velocity = CGVectorMake(0,0)
+//                bird2.physicsBody?.applyImpulse(CGVectorMake(0,70))
+                
+                score = 0
+                scoreLabel.text = "0"
+                bird.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+                bird.physicsBody?.velocity = CGVectorMake(0, 0)
+                
+                gameOver = 0
+                
+//                score2 = 0
+//                scoreLabel2.text = "0"
+//                bird2.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+//                bird2.physicsBody?.velocity = CGVectorMake(0, 0)
+//
+//                gameOver2 = 0
+
+                
+                
+            } else {
+            if  (location.x < self.frame.width / 2) {
+                //---------------------------------bird 1
+                if (gameOver == 0){
+                    bird.physicsBody?.velocity = CGVectorMake(0,0)
+                    bird.physicsBody?.applyImpulse(CGVectorMake(0,70))
+                    
+                }else {
+                    score = 0
+                    scoreLabel.text = "0"
+                    bird.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+                    bird.physicsBody?.velocity = CGVectorMake(0, 0)
+
+                    gameOver = 0
+
+                    
+                }
+                //--------------------------------bird 1
+                
+            }
+            
+//            else {
+//                
+//                if (gameOver2 == 0){
+//                    bird2.physicsBody?.velocity = CGVectorMake(0,0)
+//                    bird2.physicsBody?.applyImpulse(CGVectorMake(0,70))
+//                    
+//                }else {
+//                    score2 = 0
+//                    scoreLabel2.text = "0"
+//                    bird2.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+//                    bird2.physicsBody?.velocity = CGVectorMake(0, 0)
+//                   // labelHolder.removeAllChildren()
+//                   // movingObjects.removeAllChildren()
+//                    gameOver2 = 0
+//                   
+//                    
+//                }
+//                }
+            }
+        
+   
+        
+        }
+    }
+   
+    override func update(currentTime: CFTimeInterval) {
+        /* Called before each frame is rendered */
+    }
+}

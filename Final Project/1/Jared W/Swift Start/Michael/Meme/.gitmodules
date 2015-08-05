@@ -1,0 +1,3 @@
+[submodule "Vendor/ShotBlocker"]
+	path = Vendor/ShotBlocker
+	url = https://github.com/clayallsopp/ShotBlocker.git

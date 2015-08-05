@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="HelveticaNeueLights.ttc">
+            <string>HelveticaNeue-UltraLight</string>
+            <string>HelveticaNeue-UltraLight</string>
+        </mutableArray>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Stopwatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uM1-6H-diQ">
+                                <rect key="frame" x="180" y="95" width="241" height="83"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="72"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpC-0i-BjI">
+                                <rect key="frame" x="160" y="20" width="281" height="83"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="281" id="AdS-0h-YDy"/>
+                                    <constraint firstAttribute="height" constant="83" id="RXR-Hs-Kxd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="31"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ukh-9C-vfO">
+                                <rect key="frame" x="180" y="463" width="67" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="dbY-wl-qgT"/>
+                                    <constraint firstAttribute="width" constant="67" id="ems-zx-U1J"/>
+                                </constraints>
+                                <state key="normal" title="Start" backgroundImage="circle.png">
+                                    <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="80" y="433" width="33" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="startPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dCq-3C-0Cg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xet-iU-Mrb">
+                                <rect key="frame" x="267" y="463" width="67" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="67" id="CLM-9g-QGX"/>
+                                </constraints>
+                                <state key="normal" title="Reset" backgroundImage="circle.png">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="Reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fzZ-re-TEc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q43-Ib-Kmy">
+                                <rect key="frame" x="354" y="463" width="67" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Stop" backgroundImage="circle.png">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="Pause:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2Zk-q8-Tfb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="q43-Ib-Kmy" firstAttribute="leading" secondItem="Xet-iU-Mrb" secondAttribute="trailing" constant="20" id="5cu-VA-t2K"/>
+                            <constraint firstItem="uM1-6H-diQ" firstAttribute="trailing" secondItem="q43-Ib-Kmy" secondAttribute="trailing" id="8Kb-q7-xD9"/>
+                            <constraint firstItem="Xet-iU-Mrb" firstAttribute="baseline" secondItem="q43-Ib-Kmy" secondAttribute="firstBaseline" id="BAq-Dj-3VE"/>
+                            <constraint firstItem="q43-Ib-Kmy" firstAttribute="top" secondItem="Xet-iU-Mrb" secondAttribute="top" id="BSE-3y-vTg"/>
+                            <constraint firstItem="uM1-6H-diQ" firstAttribute="centerX" secondItem="Xet-iU-Mrb" secondAttribute="centerX" id="CJK-Xy-ZuA"/>
+                            <constraint firstItem="uM1-6H-diQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="75" id="Ql5-2p-14G"/>
+                            <constraint firstItem="Xet-iU-Mrb" firstAttribute="baseline" secondItem="q43-Ib-Kmy" secondAttribute="baseline" id="YR2-fC-nkt"/>
+                            <constraint firstItem="Xet-iU-Mrb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zvh-0K-NFm"/>
+                            <constraint firstItem="Xet-iU-Mrb" firstAttribute="leading" secondItem="Ukh-9C-vfO" secondAttribute="trailing" constant="20" id="ZzZ-1S-grD"/>
+                            <constraint firstItem="Ukh-9C-vfO" firstAttribute="baseline" secondItem="Xet-iU-Mrb" secondAttribute="firstBaseline" id="c3L-zg-MkT"/>
+                            <constraint firstItem="cpC-0i-BjI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="cLo-1j-7rw"/>
+                            <constraint firstItem="Ukh-9C-vfO" firstAttribute="top" secondItem="Xet-iU-Mrb" secondAttribute="top" id="duK-k7-pu7"/>
+                            <constraint firstItem="Xet-iU-Mrb" firstAttribute="baseline" secondItem="Ukh-9C-vfO" secondAttribute="firstBaseline" id="lFm-6a-bYe"/>
+                            <constraint firstItem="cpC-0i-BjI" firstAttribute="centerX" secondItem="uM1-6H-diQ" secondAttribute="centerX" id="oiF-lb-f6b"/>
+                            <constraint firstItem="Xet-iU-Mrb" firstAttribute="baseline" secondItem="Ukh-9C-vfO" secondAttribute="baseline" id="qRh-0A-o0f"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ukh-9C-vfO" secondAttribute="bottom" constant="77" id="sLe-SL-7JE"/>
+                            <constraint firstItem="uM1-6H-diQ" firstAttribute="leading" secondItem="Ukh-9C-vfO" secondAttribute="leading" id="vhK-si-gV1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="time" destination="cpC-0i-BjI" id="Xls-gY-Z8f"/>
+                        <outlet property="timerLabel" destination="uM1-6H-diQ" id="7uG-zt-cgZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="circle.png" width="450" height="381"/>
+    </resources>
+</document>

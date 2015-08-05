@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Meme" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8p-JD-Rld">
+                                <rect key="frame" x="22" y="557" width="46" height="30"/>
+                                <state key="normal" title="Twitter">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ShareTwitter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lKc-LY-J18"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYI-mV-xW6">
+                                <rect key="frame" x="522" y="557" width="68" height="30"/>
+                                <state key="normal" title="Facebook">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareFacebook:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q4p-iF-bBo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpt-nG-P68">
+                                <rect key="frame" x="261" y="557" width="78" height="30"/>
+                                <state key="normal" title="Screenshot">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="screenshotPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C8f-bs-oev"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rpt-nG-P68" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2vC-se-ciN"/>
+                            <constraint firstItem="rpt-nG-P68" firstAttribute="baseline" secondItem="EYI-mV-xW6" secondAttribute="baseline" id="TYm-Va-PnP"/>
+                            <constraint firstItem="rpt-nG-P68" firstAttribute="baseline" secondItem="J8p-JD-Rld" secondAttribute="baseline" id="ZBo-uz-cHs"/>
+                            <constraint firstItem="J8p-JD-Rld" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="6" id="ZsX-Pj-s2Y"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="J8p-JD-Rld" secondAttribute="bottom" constant="13" id="tAg-CI-rmB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EYI-mV-xW6" secondAttribute="trailing" constant="-6" id="zcZ-aT-KSj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="facebookButton" destination="EYI-mV-xW6" id="Nzv-Bc-8MF"/>
+                        <outlet property="screenshotButton" destination="rpt-nG-P68" id="aPU-4j-X0y"/>
+                        <outlet property="twitterButton" destination="J8p-JD-Rld" id="134-80-Msy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
